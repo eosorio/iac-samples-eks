@@ -1,10 +1,11 @@
 #--- root terraform.tfvars
 # Common tags
-environment                = "staging"
-repo_url                   = "https://github.com/eosorio/iac-samples-eks/terraform"
+environment                = "Devel"
+#repo_url                   = "https://github.com/eosorio/iac-samples-eks/terraform"
+repo_url                   = ""
 service                    = "eks-sample"
 
-vpc_cidr                   = "10.1.0.0/16"
+vpc_cidr                   = "192.168.0.0/16"
 vpc_id                     = ""
 vpc_default_route_table_id = ""
 
@@ -23,7 +24,3 @@ subnet_id     = {
 
 security_group_ssh_id      = ""
 
-# Compute
-instance_bastion1_id       = ""
-instance_bastion2_id       = ""
-instance_bastion3_id       = ""

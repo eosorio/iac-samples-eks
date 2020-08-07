@@ -5,13 +5,13 @@ provider "aws" {
   profile = var.aws_profile
 }
 
-resource "aws_vpc" "demo_vpc" {
+resource "aws_vpc" "eks_vpc" {
     cidr_block            = var.vpc_cidr
     enable_dns_hostnames  = true
     enable_dns_support    = true
 
     tags = {
-        Name          = "demo_vpc"
+        Name          = "EKS-Sandbox-VPC"
         Environment   = module.tags.environment
         IaCRepo       = module.tags.repo_url
     }
