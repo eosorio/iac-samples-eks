@@ -29,4 +29,5 @@ override.tf.json
 # example: *tfplan*
 
 terraform/backend.tf
+backend.tf
 terraform/awsprofile.tfvars
