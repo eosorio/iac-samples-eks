@@ -14,3 +14,8 @@ output "service" {
     value          = var.service
     description    = "Service. Used for resources agroupation"
 }
+
+output "owner" {
+    value          = var.owner
+    description    = "Owner of the application/service"
+}

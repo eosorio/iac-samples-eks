@@ -4,6 +4,7 @@
 variable "environment" {}
 variable "repo_url" {}
 variable "service" {}
+variable "owner" {}
 
 # AWS environment
 variable "aws_profile" {}
@@ -17,8 +18,8 @@ variable "vpc_default_route_table_id" {}
 
 # Networking
 variable "subnet_cidrs" {
-    type = map(string)
+    type = list(string)
 }
 variable "subnet_id" {
-  type = map(string)
+  type = list(string)
 }
