@@ -45,3 +45,13 @@ resource "aws_security_group" "sandbox_cluster" {
     Name = "terraform-eks-sandbox-cluster"
   }
 }
+
+resource "aws_security_group_rule" "sandbox-cluster-ingress-workstation-https" {
+  cidr_blocks       = var.external-cidr
+  description       = "Allow workstation to communicate with the cluster API Server"
+  from_port         = 443
+  protocol          = "tcp"
+  security_group_id = aws_security_group.sandbox_cluster.id
+  to_port           = 443
+  type              = "ingress"
+}

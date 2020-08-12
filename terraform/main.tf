@@ -42,4 +42,5 @@ module "cluster" {
   source          = "./cluster"
 
   vpc_id          = aws_vpc.eks_vpc.id
+  external-cidr   = var.external-cidr
 }
