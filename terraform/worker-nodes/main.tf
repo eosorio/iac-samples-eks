@@ -34,4 +34,22 @@ resource "aws_iam_role_policy_attachment" "sandbox-node-AmazonEC2ContainerRegist
   role       = aws_iam_role.sandbox-node.name
 }
 
+resource "aws_eks_node_group" "sandbox" {
+  cluster_name    = var.cluster-name
+  node_group_name = "sandbox"
+  node_role_arn   = aws_iam_role.sandbox-node.arn
+  subnet_ids      = var.subnet_id
+
+  scaling_config {
+    desired_size = var.asg_capacity
+    max_size     = var.asg_max_size
+    min_size     = var.asg_min_size
+  }
+
+  depends_on = [
+    aws_iam_role_policy_attachment.sandbox-node-AmazonEKSWorkerNodePolicy,
+    aws_iam_role_policy_attachment.sandbox-node-AmazonEKS_CNI_Policy,
+    aws_iam_role_policy_attachment.sandbox-node-AmazonEC2ContainerRegistryReadOnly,
+  ]
+}
 

@@ -55,4 +55,6 @@ module "worker-nodes" {
   asg_max_size   = var.asg_max_size
   asg_min_size   = var.asg_min_size
 
+  cluster-name   = var.cluster-name
+  subnet_id      = module.networking.subnet_id
 }
