@@ -31,17 +31,6 @@ resource "aws_subnet" "eks_subnet" {
 
 # Route tables
 
-# resource "aws_default_route_table" "eks_default_rt" {
-#   default_route_table_id     = var.vpc_default_route_table_id
-
-#   tags = {
-#     Name                                = "EKS-Sandbox-default"
-#     Environment                         = var.environment
-#     IaCRepo                             = var.repo_url
-#     Owner                               = var.owner
-#   }
-# }
-
 resource "aws_route_table" "eks_subnets_rt" {
   vpc_id                  = var.vpc_id
 
