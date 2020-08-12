@@ -27,7 +27,7 @@ module "tags" {
 }
 
 module "networking" {
-  source            = "./networking"
+  source                       = "./networking"
 
   environment                  = module.tags.environment
   repo_url                     = module.tags.repo_url
@@ -41,6 +41,18 @@ module "networking" {
 module "cluster" {
   source          = "./cluster"
 
+  cluster-name   = var.cluster-name
+
   vpc_id          = aws_vpc.eks_vpc.id
-  external-cidr   = var.external-cidr
+  external_cidr   = var.external_cidr
+  subnet_id       = module.networking.subnet_id
+}
+
+module "worker-nodes" {
+  source         = "./worker-nodes"
+
+  asg_capacity   = var.asg_capacity
+  asg_max_size   = var.asg_max_size
+  asg_min_size   = var.asg_min_size
+
 }

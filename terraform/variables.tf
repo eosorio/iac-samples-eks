@@ -16,6 +16,27 @@ variable "cluster-name" {
   type    = string
 }
 
+# VPC
+variable "vpc_cidr" {}
+variable "vpc_id" {}
+variable "vpc_default_route_table_id" {}
+
+# Networking
+variable "subnet_cidrs" {
+  type = list(string)
+}
+# Exported value of subnet_ids
+variable "subnet_id" {
+  type = list(string)
+}
+
+# Cluster module
+variable "external_cidr" {
+  type         = list(string)
+  description  = "External CIDRs for reaching the cluster (for example a VPN CIDRs) or 0.0.0.0/0"
+}
+
+# Worker Nodes
 variable "asg_capacity" {
   default = 1
   type    = number
@@ -29,25 +50,5 @@ variable "asg_min_size" {
 variable "asg_max_size" {
   default = 1
   type    = number
-}
-
-
-# VPC
-variable "vpc_cidr" {}
-variable "vpc_id" {}
-variable "vpc_default_route_table_id" {}
-
-# Networking
-variable "subnet_cidrs" {
-  type = list(string)
-}
-variable "subnet_id" {
-  type = list(string)
-}
-
-# Cluster module
-variable "external-cidr" {
-  type         = list(string)
-  description  = "External CIDRs for reaching the cluster (for example a VPN CIDRs) or 0.0.0.0/0"
 }
 

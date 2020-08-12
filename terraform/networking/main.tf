@@ -29,47 +29,6 @@ resource "aws_subnet" "eks_subnet" {
   }
 }
 
-# Security Groups will be on "cluster" and "workers" modules
-# resource "aws_security_group" "eks_cluster" {
-#   description            = "EKS created security group applied to ENI that is attached to EKS Control Plane master nodes, as well as any managed workloads."
-#   egress                 = [
-#       {
-#           cidr_blocks      = [
-#               "0.0.0.0/0",
-#             ]
-#           description      = ""
-#           from_port        = 0
-#           ipv6_cidr_blocks = []
-#           prefix_list_ids  = []
-#           protocol         = "-1"
-#           security_groups  = []
-#           self             = false
-#           to_port          = 0
-#         },
-#     ]
-#   ingress                = [
-#       {
-#           cidr_blocks      = []
-#           description      = ""
-#           from_port        = 0
-#           ipv6_cidr_blocks = []
-#           prefix_list_ids  = []
-#           protocol         = "-1"
-#           security_groups  = []
-#           self             = true
-#           to_port          = 0
-#         },
-#     ]
-#   name                   = "eks-cluster-sg-EKS_Sandbox"
-#   revoke_rules_on_delete = false
-#   tags                   = {
-#     "Name"                              = "eks-cluster-sg-EKS_Sandbox"
-#     "kubernetes.io/cluster/EKS_Sandbox" = "owned"
-#   }
-#   vpc_id          = var.vpc_id
-# }
-
-
 # Route tables
 
 # resource "aws_default_route_table" "eks_default_rt" {

@@ -12,7 +12,6 @@ variable "cluster-name" {
   type    = string
 }
 
-
 # Common tags
 variable "environment" {}
 variable "repo_url" {}

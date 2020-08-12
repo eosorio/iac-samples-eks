@@ -47,11 +47,27 @@ resource "aws_security_group" "sandbox_cluster" {
 }
 
 resource "aws_security_group_rule" "sandbox-cluster-ingress-workstation-https" {
-  cidr_blocks       = var.external-cidr
+  cidr_blocks       = var.external_cidr
   description       = "Allow workstation to communicate with the cluster API Server"
   from_port         = 443
   protocol          = "tcp"
   security_group_id = aws_security_group.sandbox_cluster.id
   to_port           = 443
   type              = "ingress"
+}
+
+resource "aws_eks_cluster" "sandbox" {
+  name     = var.cluster-name
+  role_arn = aws_iam_role.sandbox_cluster.arn
+
+  vpc_config {
+    security_group_ids = [aws_security_group.sandbox_cluster.id]
+    #subnet_ids         = aws_subnet.eks_subnet[*].id
+    subnet_ids         = var.subnet_id
+  }
+
+  depends_on = [
+    aws_iam_role_policy_attachment.sandbox-cluster-AmazonEKSClusterPolicy,
+    aws_iam_role_policy_attachment.sandbox-cluster-AmazonEKSServicePolicy,
+  ]
 }
