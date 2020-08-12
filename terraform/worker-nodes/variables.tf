@@ -15,3 +15,11 @@ variable "asg_max_size" {
   type    = number
 }
 
+variable "subnet_id" {
+  type    = list(string)
+}
+
+variable "cluster-name" {
+  default = "EKS-Sandbox"
+  type    = string
+}
