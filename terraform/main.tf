@@ -37,3 +37,9 @@ module "networking" {
   vpc_default_route_table_id   = aws_vpc.eks_vpc.default_route_table_id
   subnet_cidrs                 = var.subnet_cidrs
 }
+
+module "cluster" {
+  source          = "./cluster"
+
+  vpc_id          = aws_vpc.eks_vpc.id
+}
